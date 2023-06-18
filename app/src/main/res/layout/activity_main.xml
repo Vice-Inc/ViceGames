@@ -31,19 +31,45 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="90dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/emailField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:layout_marginBottom="15sp"
+            android:hint="E-mail"/>
+
+        <EditText
+            android:id="@+id/passwordField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:layout_marginBottom="70sp"
+            android:hint="Пароль"/>
 
         <Button
             android:id="@+id/buttonSignIn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
             android:textSize="16sp"
             android:layout_marginBottom="15sp"
+            android:backgroundTint="@color/orange"
             android:text="@string/button_sign_in"/>
 
         <Button
@@ -51,7 +77,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
             android:textSize="16sp"
+            android:backgroundTint="@color/grey"
             android:text="@string/button_register"/>
 
     </LinearLayout>
