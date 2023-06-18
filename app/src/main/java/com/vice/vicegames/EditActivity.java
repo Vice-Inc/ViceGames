@@ -27,12 +27,12 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class AccountActivity extends AppCompatActivity {
+public class EditActivity extends AppCompatActivity {
 
-    RelativeLayout accountLayout;
-    Button buttonEdit;
-    TextView nameField, emailField;
-    TextView vkField, telegramField, instagramField;
+    RelativeLayout editLayout;
+    Button buttonSave, buttonBack;
+    TextView nameField;
+    EditText vkField, telegramField, instagramField;
 
     private void loadUserData(){
         TokenService tokenService = TokenService.getTokenService();
@@ -47,10 +47,10 @@ public class AccountActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Snackbar.make(
-                        accountLayout, "Ошибка авторизации: " + e.getMessage(),
+                        editLayout, "Ошибка авторизации: " + e.getMessage(),
                         Snackbar.LENGTH_SHORT
                 ).show();
-                startActivity(new Intent(AccountActivity.this, MainActivity.class));
+                startActivity(new Intent(EditActivity.this, MainActivity.class));
                 finish();
             }
 
@@ -66,33 +66,33 @@ public class AccountActivity extends AppCompatActivity {
                             displayUserData(user);
                         } catch (JSONException e) {
                             Snackbar.make(
-                                    accountLayout, "Ошибка на сервере",
+                                    editLayout, "Ошибка на сервере",
                                     Snackbar.LENGTH_SHORT
                             ).show();
-                            startActivity(new Intent(AccountActivity.this, MainActivity.class));
+                            startActivity(new Intent(EditActivity.this, MainActivity.class));
                             finish();
                             return;
                         }
                     } else {
                         Snackbar.make(
-                                accountLayout, "Ошибка на сервере",
+                                editLayout, "Ошибка на сервере",
                                 Snackbar.LENGTH_SHORT
                         ).show();
-                        startActivity(new Intent(AccountActivity.this, MainActivity.class));
+                        startActivity(new Intent(EditActivity.this, MainActivity.class));
                         finish();
                         return;
                     }
 
                     Snackbar.make(
-                            accountLayout, "Успешная авторизация: " + response.message(),
+                            editLayout, "Успешная авторизация: " + response.message(),
                             Snackbar.LENGTH_SHORT
                     ).show();
                 } else {
                     Snackbar.make(
-                            accountLayout, "Ошибка авторизации: " + response.message(),
+                            editLayout, "Ошибка авторизации: " + response.message(),
                             Snackbar.LENGTH_SHORT
                     ).show();
-                    startActivity(new Intent(AccountActivity.this, MainActivity.class));
+                    startActivity(new Intent(EditActivity.this, MainActivity.class));
                     finish();
                 }
             }
@@ -101,42 +101,51 @@ public class AccountActivity extends AppCompatActivity {
 
     private void displayUserData(User user){
 
-        AccountActivity.this.runOnUiThread(new Runnable() {
+        EditActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                nameField.setText(user.getName());
-                emailField.append(user.getEmail());
                 vkField.append(user.getVkURL());
-                telegramField.append(user.getTelegramURL());
-                instagramField.append(user.getInstagramURL());
+//                telegramField.append(user.getTelegramURL());
+//                instagramField.append(user.getInstagramURL());
             }
         });
     }
 
-    private void showEditActivity(){
-        startActivity(new Intent(AccountActivity.this, EditActivity.class));
+    private void save(){
+
+    }
+
+    private void showAccountActivity(){
+        startActivity(new Intent(EditActivity.this, AccountActivity.class));
         finish();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);
+        setContentView(R.layout.activity_edit);
 
-        accountLayout = findViewById(R.id.activityAccountLayout);
-        buttonEdit = findViewById(R.id.buttonEdit);
+        editLayout = findViewById(R.id.activityEditLayout);
+        buttonSave = findViewById(R.id.buttonSave);
+        buttonBack = findViewById(R.id.buttonBack);
 
         nameField = findViewById(R.id.nameField);
-        emailField = findViewById(R.id.emailField);
 
         vkField = findViewById(R.id.vkField);
-        telegramField = findViewById(R.id.telegramField);
-        instagramField = findViewById(R.id.instagramField);
+//        telegramField = findViewById(R.id.telegramField);
+//        instagramField = findViewById(R.id.instagramField);
 
-        buttonEdit.setOnClickListener(new View.OnClickListener() {
+        buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showEditActivity();
+                save();
+            }
+        });
+
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAccountActivity();
             }
         });
 
