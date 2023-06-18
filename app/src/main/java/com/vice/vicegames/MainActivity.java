@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         OkHttpClient client = new OkHttpClient();
-        // String url = "http://vicegames.ru/integration/userinfo?token=1&email=1&device_name=1";
         String url = "http://vicegames.ru/integration/login?email=" + email +
                 "&password=" + password + "&device_name=AndroidApp";
 
@@ -67,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         String token = body.string();
                         TokenService tokenService = TokenService.getTokenService();
                         tokenService.setToken(token);
+                        tokenService.setEmail(email);
                     } else {
                         Snackbar.make(
                                 activityMainLayout, "Ошибка на сервере",

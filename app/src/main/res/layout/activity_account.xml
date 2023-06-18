@@ -1,9 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activityAccountLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountActivity">
+    android:background="@color/background_color"
+    tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/vice_games"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/nameField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/vice_games"
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/emailField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:text="E-mail: "
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="22sp" />
+
+
+        <TextView
+            android:id="@+id/vkField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:text="Vk: "
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/telegramField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:text="Telegram: "
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/instagramField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:text="Instagram: "
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:textSize="16sp"
+            android:layout_marginBottom="15sp"
+            android:backgroundTint="@color/orange"
+            android:text="@string/button_edit"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.vice.vicegames.services.TokenService;
 
 import java.io.IOException;
 
@@ -44,7 +43,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         OkHttpClient client = new OkHttpClient();
-        // String url = "http://vicegames.ru/integration/userinfo?token=1&email=1&device_name=1";
         String url = "http://vicegames.ru/integration/login?email=" + email +
                 "&password=" + password + "&device_name=AndroidApp";
 
@@ -65,8 +63,6 @@ public class RegisterActivity extends AppCompatActivity {
                     ResponseBody body = response.body();
                     if (body != null) {
                         String token = body.string();
-                        TokenService tokenService = TokenService.getTokenService();
-                        tokenService.setToken(token);
                     } else {
                         Snackbar.make(
                                 registerLayout, "Ошибка на сервере",
