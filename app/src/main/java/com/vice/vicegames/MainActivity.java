@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.vice.vicegames.services.TokenService;
 
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,10 +62,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if(response.isSuccessful()){
+                    ResponseBody body = response.body();
+                    if (body != null) {
+                        String token = body.string();
+                        TokenService tokenService = TokenService.getTokenService();
+                        tokenService.setToken(token);
+                    } else {
+                        Snackbar.make(
+                                activityMainLayout, "Ошибка на сервере",
+                                Snackbar.LENGTH_SHORT
+                        ).show();
+                        return;
+                    }
+
                     Snackbar.make(
                             activityMainLayout, "Успешная авторизация: " + response.message(),
                             Snackbar.LENGTH_SHORT
                     ).show();
+
+                    startActivity(new Intent(MainActivity.this, AccountActivity.class));
+                    finish();
                 } else {
                     Snackbar.make(
                             activityMainLayout, "Ошибка авторизации: " + response.message(),
