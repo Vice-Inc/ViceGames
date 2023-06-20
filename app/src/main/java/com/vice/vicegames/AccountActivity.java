@@ -106,6 +106,7 @@ public class AccountActivity extends AppCompatActivity {
             public void run() {
                 nameField.setText(user.getName());
                 emailField.append(user.getEmail());
+
                 vkField.append(user.getVkURL());
                 telegramField.append(user.getTelegramURL());
                 instagramField.append(user.getInstagramURL());

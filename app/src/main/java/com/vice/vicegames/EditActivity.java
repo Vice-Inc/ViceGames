@@ -105,14 +105,59 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void run() {
                 vkField.append(user.getVkURL());
-//                telegramField.append(user.getTelegramURL());
-//                instagramField.append(user.getInstagramURL());
+                telegramField.append(user.getTelegramURL());
+                instagramField.append(user.getInstagramURL());
             }
         });
     }
 
-    private void save(){
+    private void save(String new_vk_url, String new_telegram_url, String new_instagram_url){
+        TokenService tokenService = TokenService.getTokenService();
 
+        if (new_vk_url == null || new_vk_url == ""){
+            new_vk_url = "d";
+        }
+        if (new_telegram_url == null || new_telegram_url == ""){
+            new_telegram_url = "d";
+        }
+        if (new_instagram_url == null || new_instagram_url == ""){
+            new_instagram_url = "d";
+        }
+
+        OkHttpClient client = new OkHttpClient();
+        String url = "http://vicegames.ru/integration/changeuserlinks?token=" + tokenService.getToken() +
+                "&email=" + tokenService.getEmail() + "&device_name=AndroidApp" +
+                "&new_vk_url=" + new_vk_url + "&new_telegram_url=" + new_telegram_url +
+                "&new_instagram_url=" + new_instagram_url;
+
+        Request request = new Request.Builder().url(url).build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Snackbar.make(
+                        editLayout, "Ошибка авторизации: " + e.getMessage(),
+                        Snackbar.LENGTH_SHORT
+                ).show();
+                startActivity(new Intent(EditActivity.this, MainActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if(response.isSuccessful()){
+                    startActivity(new Intent(EditActivity.this, AccountActivity.class));
+                    finish();
+                } else {
+                    Snackbar.make(
+                            editLayout, "Ошибка авторизации: " + response.message(),
+                            Snackbar.LENGTH_SHORT
+                    ).show();
+                    startActivity(new Intent(EditActivity.this, MainActivity.class));
+                    finish();
+                }
+            }
+        });
     }
 
     private void showAccountActivity(){
@@ -132,13 +177,17 @@ public class EditActivity extends AppCompatActivity {
         nameField = findViewById(R.id.nameField);
 
         vkField = findViewById(R.id.vkField);
-//        telegramField = findViewById(R.id.telegramField);
-//        instagramField = findViewById(R.id.instagramField);
+        telegramField = findViewById(R.id.telegramField);
+        instagramField = findViewById(R.id.instagramField);
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save();
+                save(
+                        vkField.getText().toString(),
+                        telegramField.getText().toString(),
+                        instagramField.getText().toString()
+                );
             }
         });
 

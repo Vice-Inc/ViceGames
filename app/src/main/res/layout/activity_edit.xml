@@ -38,40 +38,69 @@
             android:textSize="22sp" />
 
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="90dp"
-            android:weightSum="2"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:text="Vk: "
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat"
-                android:text="Vk: "
-                android:textAlignment="center"
-                android:textColor="@color/grey"
-                android:textSize="16sp" />
+        <EditText
+            android:id="@+id/vkField"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/grey"
+            android:textSize="16sp"/>
 
-            <EditText
-                android:id="@+id/vkField"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/montserrat"
-                android:textColor="@color/grey"
-                android:textSize="16sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:text="Telegram: "
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="16sp" />
 
-        </LinearLayout>
+        <EditText
+            android:id="@+id/telegramField"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/grey"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:text="Instagram: "
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/instagramField"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/grey"
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="50dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:gravity="center"

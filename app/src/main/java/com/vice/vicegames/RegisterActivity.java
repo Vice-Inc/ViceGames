@@ -28,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button buttonSignIn, buttonRegister;
     EditText nameField, emailField, passwordField, confirmPasswordField;
 
-    private void register(String email, String password){
+    private void register(String name, String email, String password, String  confirmPassword){
         if(TextUtils.isEmpty(email)){
             Snackbar.make(
                     registerLayout, "Email не введен", Snackbar.LENGTH_SHORT
@@ -43,8 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         OkHttpClient client = new OkHttpClient();
-        String url = "http://vicegames.ru/integration/login?email=" + email +
-                "&password=" + password + "&device_name=AndroidApp";
+        String url = "http://vicegames.ru/integration/register?name=" + name +
+                "&email=" + email +
+                "&password=" + password + "&confirm_password=" + confirmPassword;
 
         Request request = new Request.Builder().url(url).build();
 
@@ -52,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Snackbar.make(
-                        registerLayout, "Ошибка авторизации: " + e.getMessage(),
+                        registerLayout, "Ошибка регистрации: " + e.getMessage(),
                         Snackbar.LENGTH_SHORT
                 ).show();
             }
@@ -72,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                     Snackbar.make(
-                            registerLayout, "Успешная авторизация: " + response.message(),
+                            registerLayout, "Успешная регистрация: " + response.message(),
                             Snackbar.LENGTH_SHORT
                     ).show();
 
@@ -80,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Snackbar.make(
-                            registerLayout, "Ошибка авторизации: " + response.message(),
+                            registerLayout, "Ошибка регистрации: " + response.message(),
                             Snackbar.LENGTH_SHORT
                     ).show();
                 }
@@ -109,7 +110,12 @@ public class RegisterActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register(emailField.getText().toString(), passwordField.getText().toString());
+                register(
+                        nameField.getText().toString(),
+                        emailField.getText().toString(),
+                        passwordField.getText().toString(),
+                        confirmPasswordField.getText().toString()
+                );
             }
         });
 

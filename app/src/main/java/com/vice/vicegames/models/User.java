@@ -12,18 +12,33 @@ public class User {
     public User(JSONObject userDataJson){
         try {
             name = userDataJson.getString("userName");
+            if(name == "null"){
+                name = "";
+            }
         } catch (JSONException ignored) {}
         try {
             email = userDataJson.getString("email");
+            if(email == "null"){
+                email = "";
+            }
         } catch (JSONException ignored) {}
         try {
             vkURL = userDataJson.getString("vkURL");
+            if(vkURL == "null"){
+                vkURL = "";
+            }
         } catch (JSONException ignored) {}
         try {
             telegramURL = userDataJson.getString("telegramURL");
+            if(telegramURL == "null"){
+                telegramURL = "";
+            }
         } catch (JSONException ignored) {}
         try {
             instagramURL = userDataJson.getString("instagramURL");
+            if(instagramURL == "null"){
+                instagramURL = "";
+            }
         } catch (JSONException ignored) {}
     }
 
